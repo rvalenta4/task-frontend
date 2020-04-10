@@ -51,70 +51,66 @@ const MovieDetail: FC<IProps> = ({ match }) => {
 		<>
 			<Row style={{ padding: '0 6rem' }}>
 				<>
-					<Row style={{ padding: '0 6rem' }}>
-						<>
-							<Col md={12} lg={!isPlayer ? 8 : 12}>
-								<Row>
-									<Col>
-										<h3 className='my-4'>{title}</h3>
-									</Col>
-									{isPlayer && (
-										<Col className='d-flex justify-content-end'>
-											<Button variant='danger' className='my-4 px-5 pb-2' onClick={togglePlayer}>
-												<FaStop />
-											</Button>
-										</Col>
-									)}
-								</Row>
-								{!isPlayer && (
-									<Row>
-										<Col>{get('overview', movie)}</Col>
-									</Row>
-								)}
-								{!isPlayer && get('length', productionCountries) && (
-									<>
-										<h4 className='my-4'>Production Countries</h4>
-										<ListGroup>
-											{productionCountries &&
-												productionCountries.map((productionCountry: ProductionCountry) => (
-													<ListGroup.Item key={productionCountry.iso_3166_1}>
-														{productionCountry.name}
-													</ListGroup.Item>
-												))}
-										</ListGroup>
-									</>
-								)}
-								{!isPlayer && get('length', spokenLanguages) && (
-									<>
-										<h4 className='my-4'>Spoken Languages</h4>
-										<ListGroup>
-											{spokenLanguages &&
-												spokenLanguages.map((spokenLanguage: SpokenLanguage) => (
-													<ListGroup.Item key={spokenLanguage.iso_639_1}>
-														{spokenLanguage.name}
-													</ListGroup.Item>
-												))}
-										</ListGroup>
-									</>
-								)}
-								{!isPlayer && (
-									<Row>
-										<Col>
-											<Button variant='success' className='my-4 px-5 pb-2' onClick={togglePlayer}>
-												<FaPlay />
-											</Button>
-										</Col>
-									</Row>
-								)}
-								{isPlayer && <Player streamUrl={STREAM_URL} />}
+					<Col md={12} lg={!isPlayer ? 8 : 12}>
+						<Row>
+							<Col>
+								<h3 className='my-4'>{title}</h3>
 							</Col>
-							{!isPlayer && (
-								<Col md={12} lg={4} className='mb-5'>
-									{posterPath && <Image className='mt-5' src={imgUrl} />}
+							{isPlayer && (
+								<Col className='d-flex justify-content-end'>
+									<Button variant='danger' className='my-4 px-5 pb-2' onClick={togglePlayer}>
+										<FaStop />
+									</Button>
 								</Col>
 							)}
-						</>
-					</Row>
+						</Row>
+						{!isPlayer && (
+							<Row>
+								<Col>{get('overview', movie)}</Col>
+							</Row>
+						)}
+						{!isPlayer && get('length', productionCountries) && (
+							<>
+								<h4 className='my-4'>Production Countries</h4>
+								<ListGroup>
+									{productionCountries &&
+										productionCountries.map((productionCountry: ProductionCountry) => (
+											<ListGroup.Item key={productionCountry.iso_3166_1}>
+												{productionCountry.name}
+											</ListGroup.Item>
+										))}
+								</ListGroup>
+							</>
+						)}
+						{!isPlayer && get('length', spokenLanguages) && (
+							<>
+								<h4 className='my-4'>Spoken Languages</h4>
+								<ListGroup>
+									{spokenLanguages &&
+										spokenLanguages.map((spokenLanguage: SpokenLanguage) => (
+											<ListGroup.Item key={spokenLanguage.iso_639_1}>
+												{spokenLanguage.name}
+											</ListGroup.Item>
+										))}
+								</ListGroup>
+							</>
+						)}
+						{!isPlayer && (
+							<Row>
+								<Col>
+									<Button variant='success' className='my-4 px-5 pb-2' onClick={togglePlayer}>
+										<FaPlay />
+									</Button>
+								</Col>
+							</Row>
+						)}
+						{isPlayer && <Player streamUrl={STREAM_URL} />}
+					</Col>
+					{!isPlayer && (
+						<Col md={12} lg={4} className='mb-5'>
+							{posterPath && <Image className='mt-5' src={imgUrl} />}
+						</Col>
+					)}
 				</>
 			</Row>
 		</>

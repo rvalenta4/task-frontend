@@ -2,13 +2,14 @@ import axios from 'axios'
 import { API, API_KEY } from '../../../api'
 import { EItemActions } from './enums'
 import { Dispatch } from 'redux'
-import { IAction, IItem } from './interfaces'
+import { IAction, IItem, IItems } from './interfaces'
 import {
 	TPopularMovieAction,
 	TPopularSeriesAction,
 	TDocumentaryAction,
 	TFAmilyAction,
-	TItemAction,
+	TMovieAction,
+	TSeriesAction,
 	TSearchForItemAction
 } from './types'
 
@@ -35,7 +36,7 @@ export const getPopularMovies = () => async (dispatch: Dispatch<TPopularMovieAct
 	try {
 		const {
 			data: { results: popularMovies }
-		}: { data: { results: Array<IItem> } } = await axios.get(`${API}/movie/popular`, {
+		} = await axios.get(`${API}/movie/popular`, {
 			params: { api_key: API_KEY }
 		})
 
@@ -68,7 +69,9 @@ export const getPopularSeries = () => async (dispatch: Dispatch<TPopularSeriesAc
 	try {
 		const {
 			data: { results: popularSeries }
-		}: { data: { results: Array<IItem> } } = await axios.get(`${API}/tv/popular`, { params: { api_key: API_KEY } })
+		} = await axios.get(`${API}/tv/popular`, {
+			params: { api_key: API_KEY }
+		})
 
 		dispatch(getPopularSeriesSucceeded(popularSeries))
 	} catch (error) {
@@ -81,7 +84,9 @@ export const getFamilyStarted = (): IAction<EItemActions.GET_FAMILY_STARTED, nul
 	payload: null
 })
 
-export const getFamilySucceeded = (family: Array<IItem>): IAction<EItemActions.GET_FAMILY_SUCCEEDED, Array<IItem>> => ({
+export const getFamilySucceeded = (
+	family: Array<IItem>
+): IAction<EItemActions.GET_FAMILY_SUCCEEDED, Array<IItem>> => ({
 	type: EItemActions.GET_FAMILY_SUCCEEDED,
 	payload: family
 })
@@ -99,7 +104,7 @@ export const getFamily = () => async (dispatch: Dispatch<TFAmilyAction>): Promis
 	try {
 		const {
 			data: { results: family }
-		}: { data: { results: Array<IItem> } } = await axios.get(`${API}/discover/movie`, {
+		} = await axios.get(`${API}/discover/movie`, {
 			params: { api_key: API_KEY, with_genres: familyId }
 		})
 		dispatch(getFamilySucceeded(family))
@@ -133,7 +138,7 @@ export const getDocumentaries = () => async (dispatch: Dispatch<TDocumentaryActi
 	try {
 		const {
 			data: { results: documentaries }
-		}: { data: { results: Array<IItem> } } = await axios.get(`${API}/discover/movie`, {
+		} = await axios.get(`${API}/discover/movie`, {
 			params: { api_key: API_KEY, with_genres: documentariesId }
 		})
 		dispatch(getDocumentariesSucceeded(documentaries))
@@ -157,7 +162,7 @@ export const getMovieFailed = (error: Error): IAction<EItemActions.GET_MOVIE_FAI
 	payload: error
 })
 
-export const getMovie = (id: string) => async (dispatch: Dispatch<TItemAction>): Promise<void> => {
+export const getMovie = (id: string) => async (dispatch: Dispatch<TMovieAction>): Promise<void> => {
 	dispatch(getMovieStarted())
 
 	try {
@@ -184,7 +189,7 @@ export const getSeriesFailed = (error: Error): IAction<EItemActions.GET_SERIES_F
 	payload: error
 })
 
-export const getSeries = (id: string) => async (dispatch: Dispatch<TItemAction>): Promise<void> => {
+export const getSeries = (id: string) => async (dispatch: Dispatch<TSeriesAction>): Promise<void> => {
 	dispatch(getSeriesStarted())
 
 	try {
@@ -201,10 +206,7 @@ export const searchForItemsStarted = (): IAction<EItemActions.SEARCH_FOR_ITEMS_S
 	payload: null
 })
 
-export const searchForItemsSucceeded = (items: {
-	movies: Array<IItem>
-	series: Array<IItem>
-}): IAction<EItemActions.SEARCH_FOR_ITEMS_SUCCEEDED, { movies: Array<IItem>; series: Array<IItem> }> => ({
+export const searchForItemsSucceeded = (items: IItems): IAction<EItemActions.SEARCH_FOR_ITEMS_SUCCEEDED, IItems> => ({
 	type: EItemActions.SEARCH_FOR_ITEMS_SUCCEEDED,
 	payload: items
 })

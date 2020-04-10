@@ -1,9 +1,9 @@
 import React, { FC } from 'react'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
-import { IItem } from '../Items/redux/interfaces'
 import { Col, Row, Carousel } from 'react-bootstrap'
 import Item from '../Items/Item'
 import './CarouselLayout.css'
+import { IItem } from '../Items/redux/interfaces'
 
 interface IProps {
 	splitItems: Array<Array<IItem>>
@@ -22,7 +22,7 @@ export const CarouselLayout: FC<IProps> = ({ splitItems, title }) => {
 				{splitItems.map((itemsChunk) => (
 					<Carousel.Item key={Math.random()}>
 						<Row>
-							{itemsChunk.map((item: IItem) => (
+							{itemsChunk.map((item) => (
 								<Col key={item.id}>
 									<Item item={item} />
 								</Col>

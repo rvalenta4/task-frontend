@@ -5,18 +5,25 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getMovie } from './redux/actions'
 import get from 'lodash/fp/get'
 import Player from '../Player/Player'
-import { IItem } from './redux/interfaces'
 import { IState } from '../../redux/interfaces'
 import { BASE_IMG_URL, STREAM_URL } from './consts'
 import { FaStop, FaPlay } from 'react-icons/fa'
+
+interface ProductionCountry {
+	iso_3166_1: string
+	name: string
+}
+
+interface SpokenLanguage {
+	iso_639_1: string
+	name: string
+}
 
 interface RouteInfo {
 	id: string
 }
 
-interface IProps extends RouteComponentProps<RouteInfo> {
-	movie: IItem
-}
+interface IProps extends RouteComponentProps<RouteInfo> {}
 
 const MovieDetail: FC<IProps> = ({ match }) => {
 	const movie = useSelector((state: IState) => state.items.movie)
@@ -69,7 +76,7 @@ const MovieDetail: FC<IProps> = ({ match }) => {
 										<h4 className='my-4'>Production Countries</h4>
 										<ListGroup>
 											{productionCountries &&
-												productionCountries.map((productionCountry) => (
+												productionCountries.map((productionCountry: ProductionCountry) => (
 													<ListGroup.Item key={productionCountry.iso_3166_1}>
 														{productionCountry.name}
 													</ListGroup.Item>
@@ -82,7 +89,7 @@ const MovieDetail: FC<IProps> = ({ match }) => {
 										<h4 className='my-4'>Spoken Languages</h4>
 										<ListGroup>
 											{spokenLanguages &&
-												spokenLanguages.map((spokenLanguage) => (
+												spokenLanguages.map((spokenLanguage: SpokenLanguage) => (
 													<ListGroup.Item key={spokenLanguage.iso_639_1}>
 														{spokenLanguage.name}
 													</ListGroup.Item>

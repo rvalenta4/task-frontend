@@ -1,21 +1,12 @@
-interface IProductionCountry {
-	iso_3166_1: string
-	name: string
-}
-
-interface ISpokenLanguage {
-	iso_639_1: string
-	name: string
-}
-
 export interface IItem {
-	id: number
-	poster_path: string
 	name?: string
 	title?: string
-	production_countries?: Array<IProductionCountry>
-	spoken_languages?: Array<ISpokenLanguage>
 	[key: string]: any
+}
+
+export interface IItems {
+	movies: Array<IItem>
+	series: Array<IItem>
 }
 
 export interface IAction<Type, Payload> {

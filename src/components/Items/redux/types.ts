@@ -40,8 +40,6 @@ export type TMovieAction = ReturnType<typeof getMovieStarted | typeof getMovieSu
 
 export type TSeriesAction = ReturnType<typeof getSeriesStarted | typeof getSeriesSucceeded | typeof getSeriesFailed>
 
-export type TItemAction = TMovieAction | TSeriesAction
-
 export type TSearchForItemAction = ReturnType<
 	typeof searchForItemsStarted | typeof searchForItemsSucceeded | typeof searchForItemsFailed
 >

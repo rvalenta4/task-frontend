@@ -16,7 +16,7 @@ const Items: FC = () => {
 	const items = useSelector((state: IState) => state.items.items)
 
 	const splitMovies = chunk(items.movies.length / SLIDE_LENGHT, items.movies)
-	const splitSeries = chunk(items.series.length / SLIDE_LENGHT, items.movies)
+	const splitSeries = chunk(items.series.length / SLIDE_LENGHT, items.series)
 
 	const dispatch = useDispatch()
 

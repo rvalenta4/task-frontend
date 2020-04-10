@@ -1,0 +1,31 @@
+# The Movie Database
+
+## This application was built using
+
+-   React
+-   Redux
+-   TypeScript
+
+## Info
+
+This application displays movies from The Movie Database. It utilizes it's API to fetch popular movies,
+popular shows, family movies and documentaries. The main page contains four carousels with movie
+posters. Upon clicking on one of the posters, the user is able to see the movie/show detail and play
+a mock video/stream. The application only uses the first page of the API results and splits this array
+of 20 items into four slides. Future versions could also fetch more data when the slider went through all
+of the 20 options. The search functionality shows movies followed by TV shows returned from movie and tv
+search endpoints and can only be used on the homepage.
+
+## Instructions
+
+Clone the repository and 'npm install' to install all the dependencies specified in 'package.json'. In the
+root, create an .env file and add the following API key:
+
+REACT_APP_API_KEY=2414ac00df6a2ee90d7788f070d833cb
+
+Then 'npm start' to start the application. Yarn can be used as an alternative to 'npm'. Use 'npm run test'
+to run available tests.
+
+## Core Dependencies
+
+Node.js 13+, React 16.8+

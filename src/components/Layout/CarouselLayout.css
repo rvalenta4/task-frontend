@@ -1,0 +1,12 @@
+.h3-padding {
+	padding-left: 6rem;
+}
+
+.carousel-padding {
+	padding: 0 6rem;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+	width: 6rem;
+}

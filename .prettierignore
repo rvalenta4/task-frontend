@@ -1,0 +1,10 @@
+/node_modules
+/public
+/package-lock.json
+/package.json
+/tsconfig.json
+
+/src/App.test.tsx
+/src/react-app-env.d.ts
+/src/serviceWorker.ts
+/src/setupTests.ts

@@ -13,8 +13,7 @@ popular TV shows, family movies and documentaries. The main page contains four c
 posters. Upon clicking on one of the posters, the user is able to see the movie/TV show detail and play
 a mock video/stream. The application only uses the first page of the API results and splits this array
 of 20 items into four slides. Future versions could also fetch more data when the slider went through all
-of the 20 options. The search functionality shows movies followed by TV shows returned from movie and tv
-search endpoints and can only be used on the homepage.
+of the 20 options. The search functionality displays movies and TV shows returned from the search endpoints.
 
 ## Instructions
 

@@ -9,7 +9,7 @@
 ## Info
 
 This application displays movies from The Movie Database. It utilizes it's API to fetch popular movies,
-popular shows, family movies and documentaries. The main page contains four carousels with movie
+popular TV shows, family movies and documentaries. The main page contains four carousels with movie
 posters. Upon clicking on one of the posters, the user is able to see the movie/show detail and play
 a mock video/stream. The application only uses the first page of the API results and splits this array
 of 20 items into four slides. Future versions could also fetch more data when the slider went through all

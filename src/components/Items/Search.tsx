@@ -4,24 +4,35 @@ import { IItem } from './redux/interfaces'
 import Item from './Item'
 
 interface IProps {
-	splitItems: Array<IItem>
+	splitMovies: Array<Array<IItem>>
+	splitSeries: Array<Array<IItem>>
 }
 
-const Search: FC<IProps> = ({ splitItems }) => {
-	return splitItems.length ? (
-		<>
-			<h3 className='my-4'>Search Results</h3>
-			{splitItems.map((itemsChunk) => (
+const Search: FC<IProps> = ({ splitMovies, splitSeries }) => {
+	return (
+		<div style={{ padding: '0 6rem'}}>
+			<h3 className='my-4'>Search Results for Movies</h3>
+			{splitMovies.map((movieChunk) => (
 				<Row key={Math.random()}>
-					{itemsChunk.map((item: IItem) => (
-						<Col key={item.id}>
-							<Item item={item} />
+					{movieChunk.map((movie) => (
+						<Col key={movie.id}>
+							<Item item={movie} />
 						</Col>
 					))}
 				</Row>
 			))}
-		</>
-	) : null
+			<h3 className='my-4'>Search Results for Series</h3>
+			{splitSeries.map((seriesChunk) => (
+				<Row key={Math.random()}>
+					{seriesChunk.map((series) => (
+						<Col key={series.id}>
+							<Item item={series} />
+						</Col>
+					))}
+				</Row>
+			))}
+		</div>
+	)
 }
 
 export default Search

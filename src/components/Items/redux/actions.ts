@@ -142,32 +142,57 @@ export const getDocumentaries = () => async (dispatch: Dispatch<TDocumentaryActi
 	}
 }
 
-export const getItemStarted = (): IAction<EItemActions.GET_ITEM_STARTED, null> => ({
-	type: EItemActions.GET_ITEM_STARTED,
+export const getMovieStarted = (): IAction<EItemActions.GET_MOVIE_STARTED, null> => ({
+	type: EItemActions.GET_MOVIE_STARTED,
 	payload: null
 })
 
-export const getItemSucceeded = (item: IItem): IAction<EItemActions.GET_ITEM_SUCCEEDED, IItem> => ({
-	type: EItemActions.GET_ITEM_SUCCEEDED,
+export const getMovieSucceeded = (item: IItem): IAction<EItemActions.GET_MOVIE_SUCCEEDED, IItem> => ({
+	type: EItemActions.GET_MOVIE_SUCCEEDED,
 	payload: item
 })
 
-export const getItemFailed = (error: Error): IAction<EItemActions.GET_ITEM_FAILED, Error> => ({
-	type: EItemActions.GET_ITEM_FAILED,
+export const getMovieFailed = (error: Error): IAction<EItemActions.GET_MOVIE_FAILED, Error> => ({
+	type: EItemActions.GET_MOVIE_FAILED,
 	payload: error
 })
 
-export const getItem = (id: string) => async (dispatch: Dispatch<TItemAction>): Promise<void> => {
-	dispatch(getItemStarted())
+export const getMovie = (id: string) => async (dispatch: Dispatch<TItemAction>): Promise<void> => {
+	dispatch(getMovieStarted())
 
 	try {
-		const { data }: { data: { results: IItem } } = await axios.get(`${API}/movie/${id}`, {
-			params: { api_key: API_KEY }
-		})
+		const { data } = await axios.get(`${API}/movie/${id}`, { params: { api_key: API_KEY } })
 
-		dispatch(getItemSucceeded(data))
+		dispatch(getMovieSucceeded(data))
 	} catch (error) {
-		dispatch(getItemFailed(error))
+		dispatch(getMovieFailed(error))
+	}
+}
+
+export const getSeriesStarted = (): IAction<EItemActions.GET_SERIES_STARTED, null> => ({
+	type: EItemActions.GET_SERIES_STARTED,
+	payload: null
+})
+
+export const getSeriesSucceeded = (item: IItem): IAction<EItemActions.GET_SERIES_SUCCEEDED, IItem> => ({
+	type: EItemActions.GET_SERIES_SUCCEEDED,
+	payload: item
+})
+
+export const getSeriesFailed = (error: Error): IAction<EItemActions.GET_SERIES_FAILED, Error> => ({
+	type: EItemActions.GET_SERIES_FAILED,
+	payload: error
+})
+
+export const getSeries = (id: string) => async (dispatch: Dispatch<TItemAction>): Promise<void> => {
+	dispatch(getSeriesStarted())
+
+	try {
+		const { data } = await axios.get(`${API}/tv/${id}`, { params: { api_key: API_KEY } })
+
+		dispatch(getSeriesSucceeded(data))
+	} catch (error) {
+		dispatch(getSeriesFailed(error))
 	}
 }
 
@@ -176,9 +201,10 @@ export const searchForItemsStarted = (): IAction<EItemActions.SEARCH_FOR_ITEMS_S
 	payload: null
 })
 
-export const searchForItemsSucceeded = (
-	items: Array<IItem>
-): IAction<EItemActions.SEARCH_FOR_ITEMS_SUCCEEDED, Array<IItem>> => ({
+export const searchForItemsSucceeded = (items: {
+	movies: Array<IItem>
+	series: Array<IItem>
+}): IAction<EItemActions.SEARCH_FOR_ITEMS_SUCCEEDED, { movies: Array<IItem>; series: Array<IItem> }> => ({
 	type: EItemActions.SEARCH_FOR_ITEMS_SUCCEEDED,
 	payload: items
 })
@@ -192,22 +218,25 @@ export const searchForItems = (query: string) => async (dispatch: Dispatch<TSear
 	dispatch(searchForItemsStarted())
 
 	if (!query) {
-		dispatch(searchForItemsSucceeded([]))
+		dispatch(searchForItemsSucceeded({ movies: [], series: [] }))
 	} else {
 		try {
 			const {
 				data: { results: movies }
-			}: { data: { results: Array<IItem> } } = await axios.get(`${API}/search/movie`, {
+			} = await axios.get(`${API}/search/movie`, {
 				params: { api_key: API_KEY, query }
 			})
 
 			const {
 				data: { results: series }
-			}: { data: { results: Array<IItem> } } = await axios.get(`${API}/search/tv`, {
+			} = await axios.get(`${API}/search/tv`, {
 				params: { api_key: API_KEY, query }
 			})
 
-			const items = [...movies, ...series]
+			const items = {
+				movies,
+				series
+			}
 
 			dispatch(searchForItemsSucceeded(items))
 		} catch (error) {

@@ -15,7 +15,8 @@ const Items: FC = () => {
 
 	const items = useSelector((state: IState) => state.items.items)
 
-	const splitItems = chunk(items.length / (SLIDE_LENGHT * 2), items)
+	const splitMovies = chunk(items.movies.length / SLIDE_LENGHT, items.movies)
+	const splitSeries = chunk(items.series.length / SLIDE_LENGHT, items.movies)
 
 	const dispatch = useDispatch()
 
@@ -26,12 +27,11 @@ const Items: FC = () => {
 		dispatch(getDocumentaries())
 	}, [dispatch])
 
-	const showSearch = items.length
-
+	const showSearch = splitMovies.length || splitSeries.length
 	return (
 		<div>
 			{showSearch ? (
-				<Search splitItems={splitItems} />
+				<Search splitMovies={splitMovies} splitSeries={splitSeries} />
 			) : (
 				<Home
 					popularMovies={popularMovies}

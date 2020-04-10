@@ -4,8 +4,12 @@ import { IItemsState } from './interfaces'
 import { TAction } from './types'
 
 const initialState: IItemsState = {
-	item: null,
-	items: [],
+	movie: null,
+	series: null,
+	items: {
+		movies: [],
+		series: []
+	},
 	popularMovies: [],
 	popularSeries: [],
 	family: [],
@@ -14,13 +18,15 @@ const initialState: IItemsState = {
 	gettingPopularSeries: false,
 	gettingFamily: false,
 	gettingDocumentaries: false,
-	gettingItem: false,
+	gettingMovie: false,
+	gettingSeries: false,
 	gettingItems: false,
 	getPopularMoviesError: null,
 	getPopularSeriesError: null,
 	getFamilyError: null,
 	getDocumentariesError: null,
-	getItemError: null,
+	getMovieError: null,
+	getSeriesError: null,
 	getItemsError: null
 }
 
@@ -83,18 +89,32 @@ export const itemsReducer = (state: IItemsState = initialState, action: TAction)
 				draft.getDocumentariesError = action.payload
 				break
 			}
-			case EItemActions.GET_ITEM_STARTED: {
-				draft.gettingItem = true
+			case EItemActions.GET_MOVIE_STARTED: {
+				draft.gettingMovie = true
 				break
 			}
-			case EItemActions.GET_ITEM_SUCCEEDED: {
-				draft.gettingItem = false
-				draft.item = action.payload
+			case EItemActions.GET_MOVIE_SUCCEEDED: {
+				draft.gettingMovie = false
+				draft.movie = action.payload
 				break
 			}
-			case EItemActions.GET_ITEM_FAILED: {
-				draft.gettingItem = false
-				draft.getItemError = action.payload
+			case EItemActions.GET_MOVIE_FAILED: {
+				draft.gettingMovie = false
+				draft.getMovieError = action.payload
+				break
+			}
+			case EItemActions.GET_SERIES_STARTED: {
+				draft.gettingSeries = true
+				break
+			}
+			case EItemActions.GET_SERIES_SUCCEEDED: {
+				draft.gettingSeries = false
+				draft.series = action.payload
+				break
+			}
+			case EItemActions.GET_SERIES_FAILED: {
+				draft.gettingSeries = false
+				draft.getSeriesError = action.payload
 				break
 			}
 			case EItemActions.SEARCH_FOR_ITEMS_STARTED: {

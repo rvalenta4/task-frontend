@@ -11,12 +11,15 @@ import {
 	getDocumentariesStarted,
 	getDocumentariesSucceeded,
 	getDocumentariesFailed,
-	getItemStarted,
-	getItemSucceeded,
-	getItemFailed,
 	searchForItemsStarted,
 	searchForItemsSucceeded,
-	searchForItemsFailed
+	searchForItemsFailed,
+	getMovieStarted,
+	getMovieSucceeded,
+	getMovieFailed,
+	getSeriesStarted,
+	getSeriesSucceeded,
+	getSeriesFailed
 } from './actions'
 
 export type TPopularMovieAction = ReturnType<
@@ -33,7 +36,11 @@ export type TDocumentaryAction = ReturnType<
 	typeof getDocumentariesStarted | typeof getDocumentariesSucceeded | typeof getDocumentariesFailed
 >
 
-export type TItemAction = ReturnType<typeof getItemStarted | typeof getItemSucceeded | typeof getItemFailed>
+export type TMovieAction = ReturnType<typeof getMovieStarted | typeof getMovieSucceeded | typeof getMovieFailed>
+
+export type TSeriesAction = ReturnType<typeof getSeriesStarted | typeof getSeriesSucceeded | typeof getSeriesFailed>
+
+export type TItemAction = TMovieAction | TSeriesAction
 
 export type TSearchForItemAction = ReturnType<
 	typeof searchForItemsStarted | typeof searchForItemsSucceeded | typeof searchForItemsFailed
@@ -44,5 +51,6 @@ export type TAction =
 	| TPopularSeriesAction
 	| TFAmilyAction
 	| TDocumentaryAction
-	| TItemAction
+	| TMovieAction
+	| TSeriesAction
 	| TSearchForItemAction

@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { Card, Button } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { IItem } from './redux/interfaces'
 import { BASE_IMG_URL } from './consts'
@@ -13,7 +13,7 @@ const Item: FC<IProps> = ({ item }) => {
 
 	return (
 		<Card className='mb-4'>
-			<Card.Body as={Link} to={`/item/${item.id}`} className='p-0'>
+			<Card.Body as={Link} to={item.title ? `/movie/${item.id}` : `/series/${item.id}`} className='p-0'>
 				<Card.Img src={imgUrl}></Card.Img>
 			</Card.Body>
 		</Card>

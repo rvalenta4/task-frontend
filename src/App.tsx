@@ -4,14 +4,16 @@ import React from 'react'
 import Items from './components/Items/Items'
 import PageLayout from './components/Layout/PageLayout'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
-import ItemDetail from './components/Items/ItemDetail'
+import MovieDetail from './components/Items/MovieDetail'
+import SeriesDetail from './components/Items/SeriesDetail'
 
 const App = () => {
 	return (
 		<Router>
 			<PageLayout>
 				<Route exact path='/' component={Items} />
-				<Route exact path='/item/:id' component={ItemDetail} />
+				<Route exact path='/movie/:id' component={MovieDetail} />
+				<Route exact path='/series/:id' component={SeriesDetail} />
 			</PageLayout>
 		</Router>
 	)

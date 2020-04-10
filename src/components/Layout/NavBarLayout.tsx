@@ -1,4 +1,4 @@
-import React, { SyntheticEvent, FC } from 'react'
+import React, { SyntheticEvent, FC, useState } from 'react'
 import { Navbar, Form, FormControl, InputGroup } from 'react-bootstrap'
 import { searchForItems } from '../Items/redux/actions'
 import { useDispatch } from 'react-redux'
@@ -7,15 +7,22 @@ import { FaSearch } from 'react-icons/fa'
 
 const NavbarLayout: FC<RouteComponentProps> = ({ location: { pathname } }) => {
 	const dispatch = useDispatch()
+	const [query, setQuery] = useState('')
 
 	const handleSearch = (e: SyntheticEvent<HTMLInputElement>): void => {
+		setQuery(e.currentTarget.value)
 		dispatch(searchForItems(e.currentTarget.value))
+	}
+
+	const resetSearch = (): void => {
+		setQuery('')
+		dispatch(searchForItems(''))
 	}
 
 	return (
 		<div>
 			<Navbar bg='light' className='justify-content-between'>
-				<Navbar.Brand as={Link} to='/'>
+				<Navbar.Brand as={Link} to='/' onClick={resetSearch}>
 					The Movie Database
 				</Navbar.Brand>
 				{pathname === '/' && (
@@ -26,7 +33,13 @@ const NavbarLayout: FC<RouteComponentProps> = ({ location: { pathname } }) => {
 									<FaSearch />
 								</InputGroup.Text>
 							</InputGroup.Prepend>
-							<FormControl type='text' placeholder='Search' className='mr-sm-2' onChange={handleSearch} />
+							<FormControl
+								type='text'
+								placeholder='Search'
+								className='mr-sm-2'
+								onChange={handleSearch}
+								value={query}
+							/>
 						</InputGroup>
 					</Form>
 				)}

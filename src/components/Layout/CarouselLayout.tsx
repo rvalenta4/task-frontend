@@ -4,6 +4,7 @@ import { Col, Row, Carousel } from 'react-bootstrap'
 import Item from '../Items/Item'
 import './CarouselLayout.css'
 import { IItem } from '../Items/redux/interfaces'
+import { v4 as uuidv4 } from 'uuid'
 
 interface IProps {
 	splitItems: Array<Array<IItem>>
@@ -20,7 +21,7 @@ export const CarouselLayout: FC<IProps> = ({ splitItems, title }) => {
 				nextIcon={<FaArrowRight color='black' />}
 				className='carousel-padding'>
 				{splitItems.map((itemsChunk) => (
-					<Carousel.Item key={Math.random()}>
+					<Carousel.Item key={uuidv4()}>
 						<Row>
 							{itemsChunk.map((item) => (
 								<Col key={item.id}>

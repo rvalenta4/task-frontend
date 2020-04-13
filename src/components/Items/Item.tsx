@@ -9,12 +9,19 @@ interface IProps {
 }
 
 const Item: FC<IProps> = ({ item }) => {
-	const imgUrl = `${BASE_IMG_URL}${item.poster_path}`
+	const posterPath = item.poster_path
+	const imgUrl = `${BASE_IMG_URL}${posterPath}`
 
 	return (
-		<Card className='mb-4'>
+		<Card>
 			<Card.Body as={Link} to={item.title ? `/movie/${item.id}` : `/series/${item.id}`} className='p-0'>
-				<Card.Img src={imgUrl}></Card.Img>
+				{posterPath ? (
+					<Card.Img src={imgUrl}></Card.Img>
+				) : (
+					<div className='d-flex justify-content-center'>
+						<span>{item.title || item.name}</span>
+					</div>
+				)}
 			</Card.Body>
 		</Card>
 	)

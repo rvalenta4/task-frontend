@@ -8,6 +8,7 @@ import Player from '../Player/Player'
 import { IState } from '../../redux/interfaces'
 import { BASE_IMG_URL, STREAM_URL } from './consts'
 import { FaStop, FaPlay } from 'react-icons/fa'
+import './General.css'
 
 interface ProductionCountry {
 	iso_3166_1: string
@@ -51,7 +52,7 @@ const MovieDetail: FC<IProps> = ({ match }) => {
 
 	return !gettingMovie && movie ? (
 		<>
-			<Row style={{ padding: '0 6rem' }}>
+			<Row className='row-padding'>
 				<>
 					<Col md={12} lg={!isPlayer ? 8 : 12}>
 						<Row>

@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { Row, Col } from 'react-bootstrap'
 import { IItem } from './redux/interfaces'
 import Item from './Item'
+import './General.css'
 
 interface IProps {
 	splitMovies: Array<Array<IItem>>
@@ -10,7 +11,7 @@ interface IProps {
 
 const Search: FC<IProps> = ({ splitMovies, splitSeries }) => {
 	return (
-		<div style={{ padding: '0 6rem'}}>
+		<div className='row-padding'>
 			<h3 className='my-4'>Search Results for Movies</h3>
 			{splitMovies.map((movieChunk) => (
 				<Row key={Math.random()}>

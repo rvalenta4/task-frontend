@@ -9,6 +9,7 @@ import { IItem } from './redux/interfaces'
 import { IState } from '../../redux/interfaces'
 import { BASE_IMG_URL, STREAM_URL } from './consts'
 import { FaStop, FaPlay } from 'react-icons/fa'
+import './General.css'
 
 interface RouteInfo {
 	id: string
@@ -43,7 +44,7 @@ const SeriesDetail: FC<IProps> = ({ match }) => {
 
 	return !gettingSeries && series ? (
 		<>
-			<Row style={{ padding: '0 6rem' }}>
+			<Row className='row-padding'>
 				<>
 					<Col md={12} lg={!isPlayer ? 8 : 12}>
 						<Row>

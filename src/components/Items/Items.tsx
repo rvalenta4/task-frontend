@@ -22,9 +22,6 @@ const Items: FC = () => {
 
 	const gettingItems = useSelector((state: IState) => state.items.gettingItems)
 
-	const splitMovies = items && chunk(items.movies.length / SLIDE_LENGHT, items.movies)
-	const splitSeries = items && chunk(items.series.length / SLIDE_LENGHT, items.series)
-
 	const dispatch = useDispatch()
 
 	useEffect(() => {
@@ -36,8 +33,8 @@ const Items: FC = () => {
 
 	return (
 		<div>
-			{!gettingItems && splitMovies && splitSeries ? (
-				<Search splitMovies={splitMovies} splitSeries={splitSeries} />
+			{!gettingItems && items ? (
+				<Search items={items} />
 			) : (
 				<Home
 					popularMovies={popularMovies}

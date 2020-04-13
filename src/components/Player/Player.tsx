@@ -3,10 +3,10 @@ import { Alert } from 'react-bootstrap'
 const shaka = require('shaka-player/dist/shaka-player.ui.js')
 
 interface Props {
-	streamUrl: string
+	url: string
 }
 
-const Player: FC<Props> = ({ streamUrl }) => {
+const Player: FC<Props> = ({ url }) => {
 	const videoRef: RefObject<HTMLVideoElement> = useRef(null)
 	const videoContainerRef: RefObject<HTMLDivElement> = useRef(null)
 
@@ -19,9 +19,17 @@ const Player: FC<Props> = ({ streamUrl }) => {
 		const player = new shaka.Player(video)
 		const ui = new shaka.ui.Overlay(player, videoContainer, video)
 
+		player.configure({
+			manifest: {
+				dash: {
+					clockSyncUri: url
+				}
+			}
+		})
+
 		ui.getControls()
-		player.load(streamUrl).catch(() => setError('Player could not load this stream'))
-	}, [streamUrl])
+		player.load(url).catch(() => setError('Player could not load this stream'))
+	}, [url])
 
 	return (
 		<>

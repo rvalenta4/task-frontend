@@ -104,7 +104,7 @@ const MovieDetail: FC<IProps> = ({ match }) => {
 								</Col>
 							</Row>
 						)}
-						{isPlayer && <Player streamUrl={STREAM_URL} />}
+						{isPlayer && <Player url={STREAM_URL} />}
 					</Col>
 					{!isPlayer && (
 						<Col md={12} lg={4} className='mb-5'>

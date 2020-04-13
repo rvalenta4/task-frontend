@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { IItem } from './redux/interfaces'
 import { BASE_IMG_URL } from './consts'
+import blank from '../../img/blank.jpg'
 
 interface IProps {
 	item: IItem
@@ -14,14 +15,12 @@ const Item: FC<IProps> = ({ item }) => {
 
 	return (
 		<Card className='mb-4'>
-			<Card.Body as={Link} to={item.title ? `/movie/${item.id}` : `/series/${item.id}`} className='p-0'>
-				{posterPath ? (
-					<Card.Img src={imgUrl}></Card.Img>
-				) : (
-					<div className='d-flex justify-content-center'>
-						<span>{item.title || item.name}</span>
-					</div>
-				)}
+			<Card.Body
+				className='d-flex justify-content-center position-relative p-0'
+				as={Link}
+				to={item.title ? `/movie/${item.id}` : `/series/${item.id}`}>
+				{!posterPath && <span className='position-absolute pt-4'>{item.title ? item.title : item.name}</span>}
+				<Card.Img src={posterPath ? imgUrl : blank}></Card.Img>
 			</Card.Body>
 		</Card>
 	)

@@ -12,33 +12,31 @@ interface IProps {
 	}
 }
 
-const Search: FC<IProps> = ({ items: { movies, series } }) => {
-	return (
-		<div className='row-padding'>
-			<h3 className='my-4'>Search Results for Movies</h3>
-			{!!movies.length && (
-				<Row key={uuidv4()}>
-					{movies.map((movie) => (
-						<Col xs={2} key={movie.id}>
-							<Item item={movie} />
-						</Col>
-					))}
-				</Row>
-			)}
-			{!movies.length && <span>No movies found</span>}
-			<h3 className='my-4'>Search Results for Movies</h3>
-			{!!series.length && (
-				<Row key={uuidv4()}>
-					{series.map((series) => (
-						<Col xs={2} key={series.id}>
-							<Item item={series} />
-						</Col>
-					))}
-				</Row>
-			)}
-			{!series.length && <span>No series found</span>}
-		</div>
-	)
-}
+const Search: FC<IProps> = ({ items: { movies, series } }) => (
+	<div className='row-padding'>
+		<h3 className='my-4'>Search Results for Movies</h3>
+		{!!movies.length && (
+			<Row key={uuidv4()}>
+				{movies.map((movie) => (
+					<Col xs={2} key={movie.id}>
+						<Item item={movie} />
+					</Col>
+				))}
+			</Row>
+		)}
+		{!movies.length && <span>No movies found</span>}
+		<h3 className='my-4'>Search Results for Movies</h3>
+		{!!series.length && (
+			<Row key={uuidv4()}>
+				{series.map((series) => (
+					<Col xs={2} key={series.id}>
+						<Item item={series} />
+					</Col>
+				))}
+			</Row>
+		)}
+		{!series.length && <span>No series found</span>}
+	</div>
+)
 
 export default Search

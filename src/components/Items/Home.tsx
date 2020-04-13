@@ -9,9 +9,22 @@ interface IProps {
 	popularSeries: Array<IItem>
 	family: Array<IItem>
 	documentaries: Array<IItem>
+	gettingPopularMovies: boolean
+	gettingPopularSeries: boolean
+	gettingFamily: boolean
+	gettingDocumentaries: boolean
 }
 
-const Home: FC<IProps> = ({ popularMovies, popularSeries, family, documentaries }) => {
+const Home: FC<IProps> = ({
+	popularMovies,
+	popularSeries,
+	family,
+	documentaries,
+	gettingPopularMovies,
+	gettingPopularSeries,
+	gettingFamily,
+	gettingDocumentaries
+}) => {
 	const splitPopularMovies = chunk(popularMovies.length / SLIDE_LENGHT, popularMovies)
 	const splitPopularSeries = chunk(popularSeries.length / SLIDE_LENGHT, popularSeries)
 	const splitFamily = chunk(family.length / SLIDE_LENGHT, family)
@@ -19,10 +32,10 @@ const Home: FC<IProps> = ({ popularMovies, popularSeries, family, documentaries 
 
 	return (
 		<>
-			<CarouselLayout title='Popular Movies' splitItems={splitPopularMovies} />
-			<CarouselLayout title='Popular Series' splitItems={splitPopularSeries} />
-			<CarouselLayout title='Family' splitItems={splitFamily} />
-			<CarouselLayout title='Family' splitItems={splitDocumentaries} />
+			{!gettingPopularMovies && <CarouselLayout title='Popular Movies' splitItems={splitPopularMovies} />}
+			{!gettingPopularSeries && <CarouselLayout title='Popular Series' splitItems={splitPopularSeries} />}
+			{!gettingFamily && <CarouselLayout title='Family' splitItems={splitFamily} />}
+			{!gettingDocumentaries && <CarouselLayout title='Family' splitItems={splitDocumentaries} />}
 		</>
 	)
 }

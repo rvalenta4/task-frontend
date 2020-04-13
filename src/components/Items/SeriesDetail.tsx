@@ -20,6 +20,8 @@ interface IProps extends RouteComponentProps<RouteInfo> {
 
 const SeriesDetail: FC<IProps> = ({ match }) => {
 	const series = useSelector((state: IState) => state.items.series)
+	const gettingSeries = useSelector((state: IState) => state.items.gettingSeries)
+
 	const dispatch = useDispatch()
 	const { id } = match.params
 
@@ -39,7 +41,7 @@ const SeriesDetail: FC<IProps> = ({ match }) => {
 		setIsPlayer(!isPlayer)
 	}
 
-	return series ? (
+	return !gettingSeries && series ? (
 		<>
 			<Row style={{ padding: '0 6rem' }}>
 				<>

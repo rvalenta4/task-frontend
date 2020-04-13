@@ -6,10 +6,7 @@ import { TAction } from './types'
 const initialState: IItemsState = {
 	movie: null,
 	series: null,
-	items: {
-		movies: [],
-		series: []
-	},
+	items: null,
 	popularMovies: [],
 	popularSeries: [],
 	family: [],
@@ -120,6 +117,7 @@ export const itemsReducer = (state: IItemsState = initialState, action: TAction)
 				break
 			}
 			case EItemActions.SEARCH_FOR_ITEMS_STARTED: {
+				draft.items = null
 				draft.gettingItems = true
 				break
 			}

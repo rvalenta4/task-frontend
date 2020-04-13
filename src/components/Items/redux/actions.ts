@@ -84,9 +84,7 @@ export const getFamilyStarted = (): IAction<EItemActions.GET_FAMILY_STARTED, nul
 	payload: null
 })
 
-export const getFamilySucceeded = (
-	family: Array<IItem>
-): IAction<EItemActions.GET_FAMILY_SUCCEEDED, Array<IItem>> => ({
+export const getFamilySucceeded = (family: Array<IItem>): IAction<EItemActions.GET_FAMILY_SUCCEEDED, Array<IItem>> => ({
 	type: EItemActions.GET_FAMILY_SUCCEEDED,
 	payload: family
 })
@@ -206,7 +204,9 @@ export const searchForItemsStarted = (): IAction<EItemActions.SEARCH_FOR_ITEMS_S
 	payload: null
 })
 
-export const searchForItemsSucceeded = (items: IItems): IAction<EItemActions.SEARCH_FOR_ITEMS_SUCCEEDED, IItems> => ({
+export const searchForItemsSucceeded = (
+	items: IItems | null
+): IAction<EItemActions.SEARCH_FOR_ITEMS_SUCCEEDED, IItems | null> => ({
 	type: EItemActions.SEARCH_FOR_ITEMS_SUCCEEDED,
 	payload: items
 })
@@ -220,7 +220,7 @@ export const searchForItems = (query: string) => async (dispatch: Dispatch<TSear
 	dispatch(searchForItemsStarted())
 
 	if (!query) {
-		dispatch(searchForItemsSucceeded({ movies: [], series: [] }))
+		dispatch(searchForItemsSucceeded(null))
 	} else {
 		try {
 			const {

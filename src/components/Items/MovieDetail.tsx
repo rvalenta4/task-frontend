@@ -27,6 +27,8 @@ interface IProps extends RouteComponentProps<RouteInfo> {}
 
 const MovieDetail: FC<IProps> = ({ match }) => {
 	const movie = useSelector((state: IState) => state.items.movie)
+	const gettingMovie = useSelector((state: IState) => state.items.gettingMovie)
+
 	const dispatch = useDispatch()
 	const { id } = match.params
 
@@ -47,7 +49,7 @@ const MovieDetail: FC<IProps> = ({ match }) => {
 		setIsPlayer(!isPlayer)
 	}
 
-	return movie ? (
+	return !gettingMovie && movie ? (
 		<>
 			<Row style={{ padding: '0 6rem' }}>
 				<>

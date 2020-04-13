@@ -13,10 +13,17 @@ const Items: FC = () => {
 	const family = useSelector((state: IState) => state.items.family)
 	const documentaries = useSelector((state: IState) => state.items.documentaries)
 
+	const gettingPopularMovies = useSelector((state: IState) => state.items.gettingPopularMovies)
+	const gettingPopularSeries = useSelector((state: IState) => state.items.gettingPopularSeries)
+	const gettingFamily = useSelector((state: IState) => state.items.gettingFamily)
+	const gettingDocumentaries = useSelector((state: IState) => state.items.gettingDocumentaries)
+
 	const items = useSelector((state: IState) => state.items.items)
 
-	const splitMovies = chunk(items.movies.length / SLIDE_LENGHT, items.movies)
-	const splitSeries = chunk(items.series.length / SLIDE_LENGHT, items.series)
+	const gettingItems = useSelector((state: IState) => state.items.gettingItems)
+
+	const splitMovies = items && chunk(items.movies.length / SLIDE_LENGHT, items.movies)
+	const splitSeries = items && chunk(items.series.length / SLIDE_LENGHT, items.series)
 
 	const dispatch = useDispatch()
 
@@ -27,10 +34,9 @@ const Items: FC = () => {
 		dispatch(getDocumentaries())
 	}, [dispatch])
 
-	const showSearch = splitMovies.length || splitSeries.length
 	return (
 		<div>
-			{showSearch ? (
+			{!gettingItems && splitMovies && splitSeries ? (
 				<Search splitMovies={splitMovies} splitSeries={splitSeries} />
 			) : (
 				<Home
@@ -38,6 +44,10 @@ const Items: FC = () => {
 					popularSeries={popularSeries}
 					family={family}
 					documentaries={documentaries}
+					gettingPopularMovies={gettingPopularMovies}
+					gettingPopularSeries={gettingPopularSeries}
+					gettingFamily={gettingFamily}
+					gettingDocumentaries={gettingDocumentaries}
 				/>
 			)}
 		</div>

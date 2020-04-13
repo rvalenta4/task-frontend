@@ -13,7 +13,7 @@ const Item: FC<IProps> = ({ item }) => {
 	const imgUrl = `${BASE_IMG_URL}${posterPath}`
 
 	return (
-		<Card>
+		<Card className='mb-4'>
 			<Card.Body as={Link} to={item.title ? `/movie/${item.id}` : `/series/${item.id}`} className='p-0'>
 				{posterPath ? (
 					<Card.Img src={imgUrl}></Card.Img>

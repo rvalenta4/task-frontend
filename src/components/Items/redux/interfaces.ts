@@ -20,7 +20,7 @@ export interface IItemsState {
 	items: {
 		movies: Array<IItem>
 		series: Array<IItem>
-	}
+	} | null
 	popularMovies: Array<IItem>
 	popularSeries: Array<IItem>
 	family: Array<IItem>

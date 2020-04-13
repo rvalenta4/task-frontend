@@ -28,7 +28,9 @@ const Player: FC<Props> = ({ url }) => {
 		})
 
 		ui.getControls()
-		player.load(url).catch(() => setError('Player could not load this stream'))
+		player
+			.load(url)
+			.catch(() => setError('Player could not load this stream'))
 	}, [url])
 
 	return (

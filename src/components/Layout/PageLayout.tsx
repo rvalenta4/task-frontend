@@ -9,9 +9,7 @@ interface IProps {
 const Layout: FC<IProps> = ({ children }) => (
 	<>
 		<NavbarLayout />
-		<Container style={{ maxWidth: '90%' }}>
-			{children}
-		</Container>
+		<Container className="pb-5" style={{ maxWidth: 'none' }}>{children}</Container>
 	</>
 )
 

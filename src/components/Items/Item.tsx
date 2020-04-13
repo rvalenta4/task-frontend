@@ -19,7 +19,9 @@ const Item: FC<IProps> = ({ item }) => {
 				className='d-flex justify-content-center position-relative p-0'
 				as={Link}
 				to={item.title ? `/movie/${item.id}` : `/series/${item.id}`}>
-				{!posterPath && <span className='position-absolute pt-4'>{item.title ? item.title : item.name}</span>}
+				{!posterPath && (
+					<span className='position-absolute pt-4 text-center'>{item.title ? item.title : item.name}</span>
+				)}
 				<Card.Img src={posterPath ? imgUrl : blank}></Card.Img>
 			</Card.Body>
 		</Card>

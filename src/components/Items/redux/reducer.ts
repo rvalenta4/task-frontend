@@ -91,6 +91,7 @@ export const itemsReducer = (state: IItemsState = initialState, action: TAction)
 			}
 			case EItemActions.GET_MOVIE_STARTED: {
 				draft.gettingMovie = true
+				draft.movie = null
 				break
 			}
 			case EItemActions.GET_MOVIE_SUCCEEDED: {
@@ -105,6 +106,7 @@ export const itemsReducer = (state: IItemsState = initialState, action: TAction)
 			}
 			case EItemActions.GET_SERIES_STARTED: {
 				draft.gettingSeries = true
+				draft.series = null
 				break
 			}
 			case EItemActions.GET_SERIES_SUCCEEDED: {

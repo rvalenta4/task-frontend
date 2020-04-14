@@ -7,19 +7,17 @@ import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-d
 import MovieDetail from './components/Items/MovieDetail'
 import SeriesDetail from './components/Items/SeriesDetail'
 
-const App = () => {
-	return (
-		<Router>
-			<PageLayout>
-				<Switch>
-					<Route exact path='/' component={Items} />
-					<Route exact path='/movie/:id' component={MovieDetail} />
-					<Route exact path='/series/:id' component={SeriesDetail} />
-					<Redirect to='/' />
-				</Switch>
-			</PageLayout>
-		</Router>
-	)
-}
+const App = () => (
+	<Router>
+		<PageLayout>
+			<Switch>
+				<Route exact path='/' component={Items} />
+				<Route exact path='/movie/:id' component={MovieDetail} />
+				<Route exact path='/series/:id' component={SeriesDetail} />
+				<Redirect to='/' />
+			</Switch>
+		</PageLayout>
+	</Router>
+)
 
 export default App

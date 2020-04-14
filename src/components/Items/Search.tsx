@@ -18,7 +18,7 @@ const Search: FC<IProps> = ({ items: { movies, series } }) => (
 		{!!movies.length && (
 			<Row key={uuidv4()}>
 				{movies.map((movie) => (
-					<Col sm={6} md={true} key={movie.id}>
+					<Col sm={6} md={2} key={movie.id}>
 						<Item item={movie} />
 					</Col>
 				))}
@@ -29,7 +29,7 @@ const Search: FC<IProps> = ({ items: { movies, series } }) => (
 		{!!series.length && (
 			<Row key={uuidv4()}>
 				{series.map((series) => (
-					<Col sm={6} md={true} key={series.id}>
+					<Col sm={6} md={2} key={series.id}>
 						<Item item={series} />
 					</Col>
 				))}

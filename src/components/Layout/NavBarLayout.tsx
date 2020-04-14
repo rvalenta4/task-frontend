@@ -20,31 +20,29 @@ const NavbarLayout: FC<RouteComponentProps> = ({ location: { pathname } }) => {
 	}
 
 	return (
-		<div>
-			<Navbar bg='light' className='justify-content-between'>
-				<Navbar.Brand as={Link} to='/' onClick={resetSearch}>
-					The Movie Database
-				</Navbar.Brand>
-				{pathname === '/' && (
-					<Form inline>
-						<InputGroup>
-							<InputGroup.Prepend>
-								<InputGroup.Text id='basic-addon1'>
-									<FaSearch />
-								</InputGroup.Text>
-							</InputGroup.Prepend>
-							<FormControl
-								type='text'
-								placeholder='Search'
-								className='mr-sm-2'
-								onChange={handleSearch}
-								value={query}
-							/>
-						</InputGroup>
-					</Form>
-				)}
-			</Navbar>
-		</div>
+		<Navbar bg='light' className='justify-content-between'>
+			<Navbar.Brand as={Link} to='/' onClick={resetSearch}>
+				The Movie Database
+			</Navbar.Brand>
+			{pathname === '/' && (
+				<Form inline>
+					<InputGroup>
+						<InputGroup.Prepend>
+							<InputGroup.Text id='basic-addon1'>
+								<FaSearch />
+							</InputGroup.Text>
+						</InputGroup.Prepend>
+						<FormControl
+							type='text'
+							placeholder='Search'
+							className='mr-sm-2'
+							onChange={handleSearch}
+							value={query}
+						/>
+					</InputGroup>
+				</Form>
+			)}
+		</Navbar>
 	)
 }
 

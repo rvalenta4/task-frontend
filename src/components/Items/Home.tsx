@@ -35,7 +35,7 @@ const Home: FC<IProps> = ({
 			{!gettingPopularMovies && <CarouselLayout title='Popular Movies' splitItems={splitPopularMovies} />}
 			{!gettingPopularSeries && <CarouselLayout title='Popular Series' splitItems={splitPopularSeries} />}
 			{!gettingFamily && <CarouselLayout title='Family' splitItems={splitFamily} />}
-			{!gettingDocumentaries && <CarouselLayout title='Family' splitItems={splitDocumentaries} />}
+			{!gettingDocumentaries && <CarouselLayout title='Documentaries' splitItems={splitDocumentaries} />}
 		</>
 	)
 }

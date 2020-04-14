@@ -28,6 +28,7 @@ const Player: FC<Props> = ({ url }) => {
 		})
 
 		ui.getControls()
+
 		player
 			.load(url)
 			.then(window.scrollTo(0, 70))

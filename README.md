@@ -22,6 +22,8 @@ root, create an .env file and add the following API key:
 
 REACT_APP_API_KEY=2414ac00df6a2ee90d7788f070d833cb
 
+Under normal circumstances the API key should not be shared, but I include it to simplify the process.
+
 Then 'npm start' to start the application. Yarn can be used as an alternative to 'npm'. Use 'npm test'
 to run available tests. If prompted to, press 'a' to run all tests.
 

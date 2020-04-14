@@ -22,8 +22,8 @@ root, create an .env file and add the following API key:
 
 REACT_APP_API_KEY=2414ac00df6a2ee90d7788f070d833cb
 
-Then 'npm start' to start the application. Yarn can be used as an alternative to 'npm'. Use 'npm run test'
-to run available tests.
+Then 'npm start' to start the application. Yarn can be used as an alternative to 'npm'. Use 'npm test'
+to run available tests. If prompted to, press 'a' to run all tests.
 
 ## Core Dependencies
 

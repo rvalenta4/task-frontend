@@ -24,7 +24,7 @@ export const CarouselLayout: FC<IProps> = ({ splitItems, title }) => {
 					<Carousel.Item key={uuidv4()}>
 						<Row>
 							{itemsChunk.map((item) => (
-								<Col key={item.id}>
+								<Col sm={6} md={true} key={item.id}>
 									<Item item={item} />
 								</Col>
 							))}

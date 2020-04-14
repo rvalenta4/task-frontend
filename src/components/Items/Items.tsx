@@ -4,8 +4,6 @@ import { getPopularMovies, getPopularSeries, getFamily, getDocumentaries } from 
 import { IState } from '../../redux/interfaces'
 import Home from './Home'
 import Search from './Search'
-import chunk from 'lodash/fp/chunk'
-import { SLIDE_LENGHT } from './consts'
 
 const Items: FC = () => {
 	const popularMovies = useSelector((state: IState) => state.items.popularMovies)

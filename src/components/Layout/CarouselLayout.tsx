@@ -14,7 +14,9 @@ interface IProps {
 export const CarouselLayout: FC<IProps> = ({ splitItems, title }) => {
 	return splitItems.length ? (
 		<>
-			<h3 className='my-4 h3-padding'>{title}</h3>
+			<h3 className='my-4 h3-padding' data-testid='carousel-h3'>
+				{title}
+			</h3>
 			<Carousel
 				indicators={false}
 				prevIcon={<FaArrowLeft color='black' />}
